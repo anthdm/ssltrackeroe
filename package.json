@@ -1,0 +1,16 @@
+{
+  "name": "template-asset-bundling",
+  "scripts": {
+    "clean": "rm -rf ./static/assets",
+    "css": "tailwindcss -i ./assets/app.css -o ./static/assets/app.css --watch"
+  },
+  "devDependencies": {
+    "daisyui": "^3.1.7",
+    "parcel": "2.9.3",
+    "postcss": "8.4.24",
+    "tailwindcss": "3.3.2"
+  },
+  "dependencies": {
+    "@tailwindcss/typography": "^0.5.9"
+  }
+}

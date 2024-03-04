@@ -1,0 +1,47 @@
+{% extends "partials/base.html" %}
+
+{% block content %}
+<div class="container mx-auto mt-20">
+	<div class="flex justify-center items-center flex-col">
+		<div class="w-full md:w-96 rounded-lg p-8 shadow-lg">
+			<h1 class="text-4xl font-bold text-center mb-10">Sign up</h1>
+			<form action="/signup" method="POST">
+				<div class="form-control">
+					<div class="mb-4">
+						<input class="input input-bordered input-default w-full" placeholder="email" type="email"
+							name="email" value="{{ flash.email}}" />
+					</div>
+					{% if flash.emailError %}
+					<p class="text-error text-sm mb-4">{{ flash.emailError }}</p>
+					{% endif %}
+					<div class="mb-4">
+						<input class="input input-bordered input-default w-full" placeholder="full name" name="fullname"
+							value="{{ flash.fullname }}" />
+					</div>
+					{% if flash.fullnameError %}
+					<p class="text-error text-sm mb-4">{{ flash.fullnameError }}</p>
+					{% endif %}
+					<div class="mb-4">
+						<input class="input input-bordered input-default w-full" placeholder="password" type="password"
+							name="password" />
+					</div>
+					{% if flash.passwordError %}
+					<div class="mb-4 p-2 border border-error rounded-lg">
+						<p class="text-error text-sm mb-2">{{ flash.passwordError }}</p>
+						<ul class="text-xs">
+							<li>At least 1 uppercase character</li>
+							<li>At least 1 digit</li>
+							<li>At least 1 special character such as @ or _</li>
+						</ul>
+					</div>
+					{% endif %}
+					<button type="submit" class="btn btn-primary w-full">Sign up</button>
+					<hr class="my-6 text-gray-500">
+				</div>
+			</form>
+			{% include "partials/google-signin.html" %}
+		</div>
+		<a href="/signin" class="my-10 underline text-info">Already have an account? Sign in here.</a>
+	</div>
+</div>
+{% endblock %}

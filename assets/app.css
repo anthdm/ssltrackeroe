@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.input-default {
+	@apply border-gray-600
+}
+
+.spinner{
+	display:none;
+}
+.htmx-request .spinner{
+	display:inline;
+}
+.htmx-request.spinner {
+	display:inline;
+}

@@ -1,0 +1,26 @@
+=> enum int
+- 0 => FREE
+- 1 => BUSINESS
+- 2 => ENTERPRISE
+
+=> FREE => BUSINESS => ENTERPRISE
+=> webhook => BUSINESS
+
+[] The pages returned when listing and filtering trackings is not correct. 
+	Its the count of the all the trackings for that user instead of the result without the limit filter applied
+[] change email option
+[] change password option
+[] finish the landing page
+[] terms and conditions
+[] maybe FAQ or docs?
+[] Slack integration
+[] Web hook integration
+[] Teams integration
+[] Maybe API
+[] New account should have an inactive subscription status default from Stripe maybe???
+[] Change plan names => STARTER $0 - BUSINESS $? - ENTERPRISE $?
+
+
+[V] make changing the default notifications email work
+[V] The issuer of some domains is n/a for some reason I dont know (unilever.com, warnerbros.com, sony.com) context deadline stuff 
+[V] Payment / subscription status also needs to be active! 

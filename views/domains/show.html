@@ -1,0 +1,26 @@
+{% extends "partials/app_base.html" %}
+
+{% block pageContent %}
+{% if tracking.Status == "offline" %}
+{% include "partials/domains/show-domain-offline.html" %}
+{% endif %}
+
+{% if tracking.Status == "unresponsive" %}
+{% include "partials/domains/show-domain-unresponsive.html" %}
+{% endif %}
+
+{% if tracking.Status == "invalid" %}
+{% include "partials/domains/show-domain-invalid.html" %}
+{% endif %}
+
+{% if tracking.Status == "healthy" || tracking.Status == "expires" %}
+{% include "partials/domains/show-domain-healthy.html" %}
+{% endif %}
+
+<div class="hidden">
+	<div class="badge badge-success"></div>
+	<div class="badge badge-warning"></div>
+	<div class="badge badge-error"></div>
+	<div class="badge badge-accent"></div>
+</div>
+{% endblock %}

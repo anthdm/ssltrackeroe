@@ -1,0 +1,21 @@
+CREATE TABLE IF NOT EXISTS domain_trackings(
+   id SERIAL PRIMARY KEY,
+   user_id UUID,
+   domain_name TEXT NOT NULL,
+   server_ip TEXT,
+   expires TIMESTAMP NOT NULL, 
+   issuer TEXT DEFAULT 'n/a',
+   status TEXT NOT NULL,
+   error TEXT,
+   signature_algo TEXT,
+   public_key_algo TEXT,
+   public_key TEXT,
+   key_usage TEXT,
+   ext_key_usages TEXT[],
+   encoded_pem TEXT,
+   dns_names TEXT,
+   signature TEXT,
+   latency INT NOT NULL,
+   last_poll_at TIMESTAMP NOT NULL, 
+   FOREIGN KEY (user_id) REFERENCES auth.users (id)
+);

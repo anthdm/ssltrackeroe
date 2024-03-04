@@ -1,0 +1,91 @@
+{% extends "partials/app_base.html" %}
+
+{% block pageContent %}
+<form method="GET" action="/domains">
+	<h1 class="text-3xl font-bold mb-6">Tracked domains</h1>
+	<div class="mb-4 border-b border-b-base-300 pb-4">
+		<div class="flex justify-between">
+			<div class="flex space-x-4 items-center">
+				<p class="text-sm">
+					{{ trackings|length }} {{ pluralize("result", trackings|length) }}
+				</p>
+				<span class="text-sm">filter by status</span>
+				<select id="statusFilter" class="select select-bordered w-fit select-sm" name="status">
+					{% for status in filters.statuses %}
+					{% if status == filters.selectedStatus %}
+					<option selected>{{ status }}</option>
+					{% else %}
+					<option>{{ status }}</option>
+					{% endif %}
+					{% endfor %}
+				</select>
+				<span class="text-sm">domains per page</span>
+				<select id="pageFilter" class="select select-bordered  w-18 select-sm" name="limit">
+					{% for limit in filters.limits %}
+					{% if limit == filters.selectedLimit %}
+					<option selected>{{ limit }}</option>
+					{% else %}
+					<option>{{ limit}}</option>
+					{% endif %}
+					{% endfor %}
+				</select>
+			</div>
+			<div class="flex space-x-4">
+				<a href="/domains" class="btn btn-neutral btn-outline btn-sm">reset filter</a>
+				<button type="submit" class="btn btn-primary btn-sm">apply filter</button>
+			</div>
+		</div>
+	</div>
+
+	{% if !trackings && userHasTrackings %}
+	<p>No results found for the selected filter. <a class="text-blue-500 underline" href="/domains">reset
+			filter</a></p>
+	{% endif %}
+	{% if !userHasTrackings %}
+	<p class="mt-6 mb-4">You have no active trackings.</p>
+	<a href="/domains/new" class="btn btn-sm btn-primary">track domains</a>
+	{% endif %}
+
+	{% if trackings && userHasTrackings %}
+	<table class="table">
+		<thead>
+			<tr>
+				<th>
+					<input type="checkbox" class="checkbox checkbox-xs" />
+				</th>
+				<th>Domain</th>
+				<th>Issuer</th>
+				<th>Expires in</th>
+				<th>Status</th>
+				<th>Details</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for tracking in trackings %}
+			<tr>
+				<th>
+					<input type="checkbox" class="checkbox checkbox-xs" />
+				</th>
+				<th>{{tracking.DomainName }}</th>
+				<td>{{tracking.Issuer }}</td>
+				<td>{{daysLeft(tracking.Expires) }}</td>
+				<td>{{badgeForStatus(tracking.Status)}}</td>
+				<td><a class="btn btn-neutral btn-xs" href='/domains/{{tracking.ID}}'>show</a></td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+	<div class="flex justify-center mt-6">
+		<div class="join">
+			{% for page in pages %}
+			{% if page == filters.selectedPage %}
+			<a href="?{{ queryParams }}&page={{ page }}" class="join-item btn btn-sm btn-active">{{page}}</a>
+			{% else %}
+			<a href="?{{ queryParams }}&page={{ page }}" class="join-item btn btn-sm">{{page}}</a>
+			{% endif %}
+			{% endfor %}
+		</div>
+	</div>
+</form>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,80 @@
+{% extends "partials/base.html" %}
+
+{% block content %}
+<script>
+	var url = window.location.href
+	console.log("hello")
+	if (url.includes("#")) {
+		console.log("this is working just fine")
+		var newURL = url.Replace("#", "?")
+		window.location.href = newURL
+	}
+</script>
+
+<div class="hero mt-8 md:mt-[calc(10vh)]">
+	<div class="hero-content text-center">
+		<div class="w-full md:w-9/12">
+			<h1 class="text-4xl md:text-7xl leading-tight md:leading-tight xl:leading-tight font-bold">We notify you
+				before your SSL
+				certificates
+				expire</h1>
+			<p class="mt-8 md:text-lg leading-relaxed">Monitor all your certificates across different providers and
+				never miss an expiry date again. Stay secure and keep your
+				business
+				running smoothly with our proactive SSL certificate expiration alerts.</p>
+		</div>
+	</div>
+</div>
+<div class="container px-4 md:mx-auto flex flex-col items-center justify-center mt-6 md:mt-16">
+	<div class="w-full md:w-9/12 rounded-xl p-1 md:p-2 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500">
+		<img class="rounded-lg shadow-lg" src="/static/assets/hero_dashboard.png" />
+	</div>
+	<a href="/pricing" class="btn btn-primary my-20">Start monitoring today</a>
+</div>
+<div class="my-20 md:my-40"></div>
+<div class="container flex flex-col gap-16 md:gap-10 lg:gap-20 px-4 md:mx-auto md:flex-row">
+	<div class="w-full md:w-1/2">
+		<h1 class="text-4xl md:text-7xl leading-tight md:leading-tight xl:leading-tight font-bold text-success">Get a
+			detailed overview of your SSL endpoints.</h1>
+		<p class="mt-8 md:text-lg leading-relaxed">
+			By gaining a complete overview of your SSL endpoints, you can identify potential vulnerabilities, weak
+			configurations, or outdated certificates that may pose risks to your online presence. With this knowledge,
+			you can take proactive measures to strengthen your security posture, improve user trust, and avoid potential
+			security breaches.
+			<br>
+			<br>
+			Our intuitive interface presents the analysis results in a user-friendly manner, providing clear
+			visualizations and detailed reports. You can easily navigate through the information, allowing you to
+			quickly pinpoint areas that require attention or further investigation.
+	</div>
+	<div class="w-full md:w-1/2 rounded-xl p-1 md:p-2 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500">
+		<img class="rounded-lg shadow-lg" src="/static/assets/domain_detail.png" />
+	</div>
+</div>
+<div class="my-20"></div>
+<footer class="footer p-10 bg-base-200 text-base-content">
+	<div>
+		<p>(c) CertPulse 2023 - All rights reserved</p>
+	</div>
+	<div>
+		<span class="footer-title">Services</span>
+		<a class="link link-hover">Branding</a>
+		<a class="link link-hover">Design</a>
+		<a class="link link-hover">Marketing</a>
+		<a class="link link-hover">Advertisement</a>
+	</div>
+	<div>
+		<span class="footer-title">Company</span>
+		<a class="link link-hover">About us</a>
+		<a class="link link-hover">Contact</a>
+		<a class="link link-hover">Pricing</a>
+		<a class="link link-hover">Press kit</a>
+	</div>
+	<div>
+		<span class="footer-title">Legal</span>
+		<a class="link link-hover">Terms of use</a>
+		<a class="link link-hover">Privacy policy</a>
+		<a class="link link-hover">Cookie policy</a>
+	</div>
+</footer>
+{% endblock %}

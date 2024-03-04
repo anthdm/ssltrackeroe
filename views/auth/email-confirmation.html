@@ -1,0 +1,11 @@
+{% extends "partials/base.html" %}
+
+{% block content %}
+<div class="container mx-auto mt-20">
+	<div class="w-full text-center">
+		<p class="text-lg mb-4">Thanks for signing up! An email confirmation is been sent to {{ email }}</p>
+		<a href="/resend-email-confirmation" class="my-10 underline text-primary">Did not received an email? Click here
+			to resent.</a>
+	</div>
+</div>
+{% endblock %}

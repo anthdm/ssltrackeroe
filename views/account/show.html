@@ -1,0 +1,85 @@
+{% extends "partials/app_base.html" %}
+
+{% block pageContent %}
+<h1 class="font-semibold uppercase">General</h1>
+<div class="mt-6 border-t border-base-200">
+	<dl class="divide-y divide-base-200">
+		<div class="px-4 py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+			<dt class="text-sm font-medium leading-6">Email</dt>
+			<dd class="mt-1 text-sm leading-6 sm:col-span-2 sm:mt-0">
+				{{ user.Email }}
+				<button class="float-right btn btn-outline btn-neutral btn-sm">change email</button>
+			</dd>
+		</div>
+		<div class="px-4 py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+			<dt class="text-sm font-medium leading-6">Plan</dt>
+			<dd class="mt-1 text-sm leading-6 sm:col-span-2 sm:mt-0">
+				<div class="badge badge-success">{{ account.Plan }}</div>
+				<a href="{{ customerPortalURL }}" target="_blank"
+					class="float-right btn btn-outline btn-neutral btn-sm">change
+					plan</a>
+			</dd>
+		</div>
+	</dl>
+</div>
+<div class="my-10"></div>
+<h1 class="font-semibold uppercase">Settings</h1>
+<div class="mt-6 border-t border-base-200">
+	<form action="/account" method="POST">
+		<div class="mt-6">
+			<p class=" font-bold mb-2 text-sm">Default notification email</p>
+			<p class="text-sm mb-4">The default email address that will receive notifications before any of your
+				certificates expire.</p>
+			<input name="notifyDefaultEmail" value={{account.NotifyDefaultEmail}}
+				class="input input-bordered input-default w-full max-w-xs" />
+		</div>
+		{% if flash.notifyDefaultEmailError %}
+		<label class="label">
+			<span class="label-text-alt text-error text-sm">
+				{{ flash.notifyDefaultEmailError }}
+			</span>
+		</label>
+		{% endif %}
+		<div class="border-b border-base-200 my-6"></div>
+		<div class="form-control">
+			<p class="font-bold mb-2 text-sm">Notify me</p>
+			<p class="text-sm mb-4">The number of days you will be notified in advance before any of your
+				certificates expire.</p>
+			<div class="join">
+				<input name="notifyUpfront" value={{account.NotifyUpfront}}
+					class="input w-28 input-bordered input-default join-item" />
+				<button type="button" class="btn join-item">days before expiry</button>
+			</div>
+			{% if flash.notifyUpfrontError %}
+			<label class="label">
+				<span class="label-text-alt text-error text-sm">
+					{{ flash.notifyUpfrontError }}
+				</span>
+			</label>
+			{% endif %}
+		</div>
+		<div class="border-b border-base-200 my-6"></div>
+		<div class="form-control">
+			<p class="font-bold mb-2 text-sm">Webhook</p>
+			<p class="text-sm mb-4">The HTTP URL of your webhook endpoint.</p>
+			<input name="notifyWebhookURL" class="input input-bordered input-default w-full max-w-xs"
+				placeholder="https://yourdomain.com" {% if !settings.Webhooks %} disabled {% endif%} />
+			{% if flash.notifyWebhookURLError %}
+			<label class="label">
+				<span class="label-text-alt text-error text-sm">
+					{{ flash.notifyWebhookURLError }}
+				</span>
+			</label>
+			{% endif %}
+			{% if !settings.Webhooks %}
+			<div class="text-warning mt-2">
+				<p>Webhooks are not available in the {{ account.Plan }} plan. <a href="#"
+						class="underline text-info">Click here to upgrade your account</a></p>
+			</div>
+			{% endif %}
+		</div>
+		<div class="border-b border-base-200 my-6"></div>
+		<button type="submit" class="btn btn-primary">Save changes</button>
+	</form>
+</div>
+{% endblock %}

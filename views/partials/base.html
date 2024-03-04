@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>CertPulse - Track and monitor all your SSL certificates in one place.</title>
+	<meta name="description" content="CertPulse tracks all your SSL certificates and notifies your before they expire.">
+	<link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+	<script src="https://unpkg.com/htmx.org@1.9.2"></script>
+	{{ css("app.css") }}
+
+	<script>
+		var url = window.location.href
+		if (url.includes("#")) {
+			var newURL = url.replace("#", "?")
+			window.location.href = newURL
+		}
+	</script>
+	{% block script %}
+	{% endblock %}
+</head>
+
+<body class="min-h-screen">
+	{% include "partials/navigation.html" %}
+	{% block content%}{% endblock %}
+</body>

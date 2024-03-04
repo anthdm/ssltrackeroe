@@ -1,0 +1,29 @@
+{% extends "partials/base.html" %}
+
+{% block content %}
+<div class="container mx-auto mt-20">
+	<div class="flex justify-center items-center flex-col">
+		<div class="w-full md:w-96 rounded-lg p-8 shadow-lg">
+			<h1 class="text-4xl font-bold text-center mb-10">Sign in</h1>
+			<form action="/signin" method="POST">
+				<div class="form-control">
+					<div class="mb-4">
+						<input class="input input-bordered input-default w-full" name="email" type="email"
+							placeholder="email" />
+					</div>
+					<div class="mb-4"> <input class="input input-bordered input-default w-full" type="password"
+							placeholder="password" name="password" />
+					</div>
+					{% if flash.authError %}
+					<p class="text-error text-sm mb-4">{{ flash.authError }}</p>
+					{% endif %}
+					<button type="submit" class="btn btn-primary w-full">Sign in</button>
+					<hr class="my-6">
+				</div>
+			</form>
+			{% include "partials/google-signin.html" %}
+		</div>
+		<a href="/signup" class="my-10 underline text-info">Don't have an account? Sign up for free here</a>
+	</div>
+</div>
+{% endblock %}

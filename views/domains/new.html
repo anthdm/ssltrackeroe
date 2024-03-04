@@ -1,0 +1,26 @@
+{% extends "partials/app_base.html" %}
+
+{% block pageContent %}
+<div class="prose">
+	<h1 class="text-3xl font-bold">Track new domains</h1>
+	<p>Add a single domain or a comma separated list of all the domains you want to track.</p>
+	<form action="/domains" method="POST">
+		<textarea rows="5" class="textarea textarea-bordered input-default w-full text-base"
+			placeholder="mydomain.com,someotherdomain.so" name="domains">{{flash.domains}}</textarea>
+		{% if flash.domainsError %}
+		<p class="text-error text-sm mt-0 pt-0">{{ flash.domainsError}}</p>
+		{% endif %}
+		{% if flash.maxTrackings %}
+		<div class="">
+			<p class="text-warning">
+				With your current plan you can monitor up to a total of {{ flash.maxTrackings }} domains. <a
+					class="text-info" href="/account">Upgrade your account here</a>
+			</p>
+		</div>
+		{% endif %}
+		<div class="mt-6">
+			<button id="addDomainButton" type="submit" class="btn btn-primary w-fit">Track domains</button>
+		</div>
+	</form>
+</div>
+{% endblock %}

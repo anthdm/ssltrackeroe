@@ -1,0 +1,24 @@
+<div clas="w-full">
+	<div class="mb-6">
+		<h1 class="text-3xl font-bold mb-4">{{ tracking.DomainName }} <span class="text-sm">138.197.180.7:44</span>
+		</h1>
+		<p class="text-warning">This domain is offline on port 443</p>
+	</div>
+	{% include "partials/domains/show-actions.html" %}
+	<div class="mt-6 border-t border-base-200">
+		<dl class="divide-y divide-base-200">
+			<div class="px-4 py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+				<dt class="text-sm font-medium leading-6">Status</dt>
+				<dd class="mt-1 text-sm leading-6 sm:col-span-2 sm:mt-0">
+					{{ badgeForStatus(tracking.Status) }}
+				</dd>
+			</div>
+			<div class="px-4 py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+				<dt class="text-sm font-medium leading-6">Error</dt>
+				<dd class="mt-1 text-sm leading-6 sm:col-span-2 sm:mt-0">
+					{{ tracking.Error }}
+				</dd>
+			</div>
+		</dl>
+	</div>
+</div>

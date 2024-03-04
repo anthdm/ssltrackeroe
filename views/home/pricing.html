@@ -1,0 +1,78 @@
+{% extends "partials/base.html" %}
+
+{% block content %}
+<div class="container mx-auto mt-20 mb-10">
+	<div class="flex justify-center">
+		<div class="w-9/12 text-center mb-20">
+			<h1 class="text-5xl font-bold mb-8">Explore the right plan for your business.</h1>
+			<p class="text-xl">Cancel any time, no strings attached.</p>
+		</div>
+	</div>
+
+	<div class="flex justify-center">
+		<div class="w-full flex flex-col gap-10 px-10 lg:w-fit lg:flex-row">
+			<div class="card w-full lg:w-80 bg-base-100 shadow-xl">
+				<div class="card-body justify-between">
+					<div class="card-title flex flex-col mb-4">
+						<h2 class="card-title text-2xl font-bold">STARTER</h2>
+						<p class="font-bold text-3xl text-primary mb-2">$0</p>
+						<p class="text-base font-semibold">Monitor {{ starterDomains }} domains</p>
+					</div>
+					<ul class="list-none mb-6 prose text-left">
+						<li><span class="text-green-500 font-bold text-xl">&check;</span> Email notifications</li>
+						<li><span class="text-green-500 font-bold text-xl">&check;</span> Certificate details</li>
+					</ul>
+					<div class="card-actions justify-center">
+						<a href="/signup" class="btn btn-primary">START FOR FREE</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="card w-full lg:w-80 bg-base-200 shadow-xl lg:-translate-y-8 relative">
+				<div class="badge badge-success absolute right-2 top-2">Best choice</div>
+				<div class="card-body justify-between">
+					<div class="card-title flex flex-col mb-4">
+						<h2 class="card-title text-2xl font-bold">BUSINESS</h2>
+						<p class="font-bold text-3xl text-primary mb-2">$29.99</p>
+						<p class="text-base font-semibold">Monitor up to {{ businessDomains }} domains</p>
+					</div>
+					<p>Everything in starter plus:</p>
+					<ul class="list-none mb-6 prose">
+						<li><span class="text-green-500 font-bold text-xl">&check;</span> Slack notifications</li>
+						<li><span class="text-green-500 font-bold text-xl">&check;</span> Webhooks</li>
+						<li><span class="text-green-500 font-bold text-xl">&check;</span> Notify 3 email addresses</li>
+					</ul>
+					<div class="card-actions justify-center">
+						<form method="POST" action="/stripe/checkout">
+							<input type="hidden" name="priceID" value="{{ planBusinessPID }}" />
+							<button class="btn btn-primary">CHOOSE PLAN</button>
+						</form>
+					</div>
+				</div>
+			</div>
+
+			<div class="card w-full lg:w-80 bg-base-100 shadow-xl">
+				<div class="card-body justify-between">
+					<div class="card-title flex flex-col mb-4">
+						<h2 class="card-title text-2xl font-bold">ENTERPRISE</h2>
+						<p class="font-bold text-3xl text-primary mb-2">$79.99</p>
+						<p class="text-base font-semibold">Monitor up to {{ enterpriseDomains }} domains</p>
+					</div>
+					<p class="">Everything in business plus:</p>
+					<ul class="list-none mb-6 prose text-left">
+						<li><span class="text-green-500 font-bold text-xl">&check;</span> API</li>
+						<li><span class="text-green-500 font-bold text-xl">&check;</span> Teams notifications</li>
+						<li><span class="text-green-500 font-bold text-xl">&check;</span> Notify 10 email addresses</li>
+					</ul>
+					<div class="card-actions justify-center">
+						<form method="POST" action="/stripe/checkout">
+							<input type="hidden" name="priceID" value="{{ planEnterprisePID }}" />
+							<button class="btn btn-primary">CHOOSE PLAN</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

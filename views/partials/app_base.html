@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>CertPulse - Track and monitor all your SSL certificates in one place.</title>
+	<meta name="description" content="CertPulse tracks all your SSL certificates and notifies your before they expire.">
+	<link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+	<script src="https://unpkg.com/htmx.org@1.9.2"></script>
+	{{ css("app.css") }}
+
+	{% block script %}
+	{% endblock %}
+</head>
+
+<body class="min-h-screen pb-10 px-6">
+	{% include "partials/app_navigation.html" %}
+	{% block content %}
+	<div class="flex mt-[calc(6vh)]">
+		{% include "partials/sidenav.html" %}
+		<div class="w-full flex justify-center">
+			<div class="w-full px-8 xl:px-0 xl:w-9/12">
+				{% block pageContent %}
+				{% endblock %}
+			</div>
+		</div>
+	</div>
+	{% endblock %}
+</body>
